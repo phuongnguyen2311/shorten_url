@@ -15,18 +15,14 @@
 
 ### API endpoint
 #### encode
-*
-URL: {{host}}:4000/v1/encode
-Method: POST
-Params: url: string
-*
+- URL: {{host}}:4000/v1/encode
+- Method: POST
+- Params: url: string
 
 #### decode
-*
-URL: {{host}}:4000/v1/decode
-Method: POST
-Params: url: string
-*
+- URL: {{host}}:4000/v1/decode
+- Method: POST
+- Params: url: string
 
 ### Potential attack vectors on the application
 
