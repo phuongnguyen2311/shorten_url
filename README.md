@@ -26,11 +26,14 @@
 
 - To mitigate these potential attack vectors, the application could implement input validation, sanitization, and encoding to prevent injection attacks. It could also limit the number of requests per user to prevent DoS attacks, and implement multi-factor authentication to prevent phishing attacks. Regular security testing and vulnerability assessments can also help identify and address potential weaknesses in the application's security.
 
+- Beside of we need setting for secure application as:
+- 1. Set the "secure" flag on the cookie: This ensures that the cookie is only sent over HTTPS connections, which adds an extra layer of security.
 
+- 2. Set the "HttpOnly" flag on the cookie: This prevents the cookie from being accessed by JavaScript, which helps protect against cross-site scripting (XSS) attacks.
 
+- 3. Set the "max-age" or "expires" attribute to make the cookie read-only: This sets a specific time period for how long the cookie will be valid, after which it will expire and become read-only.
+- We can use a 3rd service like Cloudflare or Aws Shield to protect application attacks
 
+## Solution for scale up and resolve problem the duplicate or collision
 
-Regenerate response
-
-
-* ...
+* 
