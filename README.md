@@ -12,6 +12,22 @@
 ## Run rspec for endpoint
 - rspec spec/controllers/v1/*
 
+
+### API endpoint
+#### encode
+*
+URL: {{host}}:4000/v1/encode
+Method: POST
+Params: url: string
+*
+
+#### decode
+*
+URL: {{host}}:4000/v1/decode
+Method: POST
+Params: url: string
+*
+
 ### Potential attack vectors on the application
 
 - Cross-site scripting (XSS) attacks: An attacker could inject malicious code into the application, which would then execute when other users click on the shortened URL. This could allow the attacker to steal user credentials or perform other malicious actions.
@@ -37,3 +53,4 @@
 ## Solution for scale up and resolve problem the duplicate or collision
 
 * 
+ 
