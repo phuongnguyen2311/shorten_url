@@ -1,0 +1,5 @@
+shorten:
+    protocol: 'https://'
+redis:
+  host: '127.0.0.1'
+  db: '0'

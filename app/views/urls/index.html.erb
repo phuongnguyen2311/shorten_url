@@ -1,0 +1,6 @@
+<h2> Shorten URL</h2>
+
+<%= form_for @url do |f| %>
+  Original Url: <%= f.text_field :original_url, size: '90%' %><br />
+  <%= f.submit %>
+<% end %>
