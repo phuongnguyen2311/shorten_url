@@ -8,6 +8,11 @@ class EncodeService < ServiceBase
   def execute!
     code = generate_code
     old_url = Url.find_by(short_url: code)
+    while old_url && old_url.original_url != url
+      code = generate_code
+      old_url = Url.find_by(short_url: code)
+    end
+
     return old_url if old_url
 
     data_url = Url.new(original_url: url, short_url: code)
