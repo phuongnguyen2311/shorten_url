@@ -15,13 +15,63 @@ describe V1::DecodesController, type: :request do
       }
     end
 
-    context 'URL exist' do
+    context 'When url is blank' do
+      params = {
+        url: ''
+      }
       before do
         action(path, params)
       end
 
-      it 'should return origin url' do
-        expect(JSON.parse(response.body)['data']['original_url']).to eq 'https://rubygems.org/gems/connection_pool/versions/2.2.1'
+      it 'should return code 500' do 
+        expect(JSON.parse(response.body)['code']).to eq(500)
+      end
+
+      it 'should return message error' do
+        expect(JSON.parse(response.body)['message']).to eq('url is required')
+      end
+
+      it 'should return empty data' do
+        expect(JSON.parse(response.body)['data']).to eq({})
+      end
+    end
+
+    context 'When url is valid' do
+      before do
+        action(path, params)
+      end
+
+      it 'should return code 200' do 
+        expect(JSON.parse(response.body)['code']).to eq(200)
+      end
+
+      it 'should return message success' do
+        expect(JSON.parse(response.body)['message']).to eq('Decode url success')
+      end
+
+      it 'should return has data original_url url' do
+        expect(JSON.parse(response.body)['data']['original_url']).not_to be_empty
+      end
+    end
+
+    context 'When url is wrong' do
+      params = {
+        url: 'http://localhost:4000/27Z2'
+      }
+      before do
+        action(path, params)
+      end
+
+      it 'should return code 500' do 
+        expect(JSON.parse(response.body)['code']).to eq(500)
+      end
+
+      it 'should return message error' do
+        expect(JSON.parse(response.body)['message']).to eq('Decode url fail')
+      end
+
+      it 'should return original_url is empty' do
+        expect(JSON.parse(response.body)['data']).to be_empty
       end
     end
   end
