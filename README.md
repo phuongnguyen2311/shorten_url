@@ -47,6 +47,24 @@
 - We can use a 3rd service like Cloudflare or Aws Shield to protect application attacks
 
 ## Solution for scale up and resolve problem the duplicate or collision
+![Diagram](architect.png)
+### Solution for scale up
+- We can use all solution include optimize source code, architect of server and optimize database as picture above.
+- We use load balancing and auto scaling group for handle concurency request at same time
+- We use cache and sharding database for increase speed up response of request
+- The purpose of a database master-slave configuration is to achieve high availability and fault tolerance for a database system, The master server is responsible for receiving write transactions and updating the database. The slave servers receive read-only queries from clients and synchronize their data with the master server using a process called replication, Overall, the master-slave configuration is a common and effective way to ensure high availability, scalability, and fault tolerance for database systems.
 
-* 
- 
+### Resolve problem the duplicate or collision
+- For resolve this problem we have many solution but i think we can use Key Generation Service (KGS) is better.
+- Generating a unique key at scale without duplication and collisions can be a bit of a challenge. To solve this problem, we can create a standalone Key Generation Service (KGS) that generates a unique key ahead of time and stores it in a separate database for later use. This approach can make things simple for us.
+#### Step by step
+##### Encode
+- When a user creates a new URL, our API server requests a new unique key from the Key Generation Service (KGS).
+- Key Generation Service provides a unique key to the API server and marks the key as used.
+- API server writes the new URL entry to the database and cache.
+- Our service returns an HTTP 200 response to the user.
+
+##### Accessing a URL
+- When a client navigates to a certain short URL, the request is sent to the API servers.
+- The request first hits the cache, and if the entry is not found there then it is retrieved from the database and an HTTP 301 (Redirect) is issued to the original URL.
+- If the key is still not found in the database, an HTTP 404 (Not found) error is sent to the user.
