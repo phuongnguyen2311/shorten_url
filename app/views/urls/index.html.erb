@@ -1,6 +1,16 @@
-<h2> Shorten URL</h2>
+<h2> Encode</h2>
+Original Url: <input size="90%" type="text" name="original_url" id="url_original_url"><br>
+<input type="button" class='btn-encode' name="commit" value="Create Url" data-disable-with="Create Url">
+<p>Shorted Url: <span class='shorted_url'></span></p>
+<span class='encode_error' style="color:red;"></span>
+<br/>
+<br/>
+<br/>
+<h2> Decode</h2>
+Shorted Url: <input size="90%" type="text" name="short_url" id="short_url"><br>
+<input type="button" class='btn-decode' name="commit" value="Create Url" data-disable-with="Create Url">
+<p>Original Url: <span class='original_url'></span></p>
+<span class='decode_error' style="color:red;"></span>
 
-<%= form_for @url do |f| %>
-  Original Url: <%= f.text_field :original_url, size: '90%' %><br />
-  <%= f.submit %>
-<% end %>
+
+<%= javascript_include_tag "url" %>
